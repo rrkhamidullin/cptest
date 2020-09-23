@@ -10,6 +10,8 @@ public class RowsProcessor {
     public void process(FileParser fileParser) {
         try {
             fileParser.rows().map(Row::toJsonObject).forEach(System.out::println);
+        } catch (Throwable e) {
+            //log  file failed
         } finally {
             try {
                 fileParser.close();
