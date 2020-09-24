@@ -59,11 +59,6 @@ public enum Readers {
     }
 
     private static BufferedReader createBufferedReader(String fileName) throws IOException {
-        String[] split = fileName.split("\\.");
-        if (split.length < 2) {
-            log.error("File reader creation failed. File name have wrong format.");
-            return null;
-        }
         log.info("Creating file reader for: {}", fileName);
         return Files.newBufferedReader(Paths.get(fileName));
     }
