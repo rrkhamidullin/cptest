@@ -1,4 +1,4 @@
-package com.cp.rrkh.parse.readers;
+package com.cp.rrkh.readers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;

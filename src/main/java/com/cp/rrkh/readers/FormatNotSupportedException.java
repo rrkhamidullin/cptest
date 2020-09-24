@@ -1,4 +1,4 @@
-package com.cp.rrkh.parse;
+package com.cp.rrkh.readers;
 
 public class FormatNotSupportedException extends RuntimeException {
 

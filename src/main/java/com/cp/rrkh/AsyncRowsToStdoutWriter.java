@@ -1,6 +1,6 @@
 package com.cp.rrkh;
 
-import com.cp.rrkh.parse.readers.FileReader;
+import com.cp.rrkh.readers.FileReader;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -22,7 +22,6 @@ public class AsyncRowsToStdoutWriter {
         try {
             fileReader.rows().map(gson::toJson).forEach(System.out::println);
         } catch (Throwable e) {
-            //log
             log.error("File {} parse error. E: {}", fileReader.getFileName(), e);
         } finally {
             try {

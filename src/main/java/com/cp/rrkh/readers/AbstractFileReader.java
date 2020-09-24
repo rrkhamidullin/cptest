@@ -1,6 +1,5 @@
-package com.cp.rrkh.parse.readers;
+package com.cp.rrkh.readers;
 
-import com.cp.rrkh.parse.Row;
 import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;

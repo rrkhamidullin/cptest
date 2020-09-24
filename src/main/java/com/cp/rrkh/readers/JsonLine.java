@@ -1,4 +1,4 @@
-package com.cp.rrkh.parse.readers;
+package com.cp.rrkh.readers;
 
 import lombok.Data;
 
