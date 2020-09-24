@@ -1,12 +1,10 @@
 package com.cp.rrkh.readers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.stream.Stream;
@@ -14,25 +12,30 @@ import java.util.stream.Stream;
 /**
  * Общий функционал присущий всем читателям файлов в независимости от формата.
  */
-public abstract class AbstractFileReader implements FileReader {
+@Slf4j
+public abstract class AbstractReader implements Reader {
 
     private final String fileName;
     private final BufferedReader br;
     private long counter = 0L;
 
-    public AbstractFileReader(String fileName) throws IOException {
+    public AbstractReader(String fileName, BufferedReader br) {
         this.fileName = fileName;
-        this.br = Files.newBufferedReader(Paths.get(fileName));
+        this.br = br;
     }
 
     @Override
     public Stream<Row> rows() {
-        return br.lines().map(this::mapRow).map(this::mapRow);
+        return br.lines().map(this::mapLine).map(this::mapRow);
     }
 
     @Override
-    public void close() throws Exception {
-        br.close();
+    public void close() {
+        try {
+            br.close();
+        } catch (Exception e) {
+            log.error("Error.", e);
+        }
     }
 
     @Override
@@ -42,10 +45,11 @@ public abstract class AbstractFileReader implements FileReader {
 
     /**
      * Получить строку в виде массива полей.
+     *
      * @param line строка
      * @return массив полей или массив нулевого размера в случае неуспеха
      */
-    protected abstract String[] mapRow(String line);
+    protected abstract String[] mapLine(String line);
 
     private Row mapRow(String[] columns) {
         if (columns.length != 4) {

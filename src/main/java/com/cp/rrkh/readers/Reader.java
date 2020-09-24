@@ -6,7 +6,7 @@ import java.util.stream.Stream;
  * Потоковый обработчик/читатель файла.
  * Возвращает содержимое файла построчно в виде POJO.
  */
-public interface FileReader {
+public interface Reader {
 
     String OK = "OK";
     String ID = "id";
@@ -22,7 +22,7 @@ public interface FileReader {
     /**
      * Закрыть файл. Нужно это обязательно сделать после того как файл вычитан.
      */
-    void close() throws Exception;
+    void close();
 
     /**
      * Получить имя обрабатываемого файла.

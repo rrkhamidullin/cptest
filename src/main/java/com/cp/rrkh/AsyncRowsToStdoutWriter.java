@@ -1,6 +1,6 @@
 package com.cp.rrkh;
 
-import com.cp.rrkh.readers.FileReader;
+import com.cp.rrkh.readers.Reader;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -17,18 +17,19 @@ public class AsyncRowsToStdoutWriter {
 
     private final Gson gson = new Gson();
 
+    /**
+     * Вычитать поток из reader и закрыть его.
+     *
+     * @param reader читатель файла
+     */
     @Async
-    public CompletableFuture<Void> writeRowsFromReader(FileReader fileReader) {
+    public CompletableFuture<Void> writeRowsFromReader(Reader reader) {
         try {
-            fileReader.rows().map(gson::toJson).forEach(System.out::println);
-        } catch (Throwable e) {
-            log.error("File {} parse error. E: {}", fileReader.getFileName(), e);
+            reader.rows().map(gson::toJson).forEach(System.out::println);
+        } catch (Exception e) {
+            log.error("File {} parse error. E: {}", reader.getFileName(), e);
         } finally {
-            try {
-                fileReader.close();
-            } catch (Exception e) {
-                log.error("Error.", e);
-            }
+            reader.close();
         }
         return CompletableFuture.completedFuture(null);
     }

@@ -2,18 +2,18 @@ package com.cp.rrkh.readers;
 
 import org.springframework.util.StringUtils;
 
-import java.io.IOException;
+import java.io.BufferedReader;
 
-public class CSVFileReader extends AbstractFileReader {
+public class CSVReader extends AbstractReader {
 
     private static final String CSV_DELIMITER = ",";
 
-    public CSVFileReader(String fileName) throws IOException {
-        super(fileName);
+    public CSVReader(String fileName, BufferedReader br) {
+        super(fileName, br);
     }
 
     @Override
-    protected String[] mapRow(String line) {
+    protected String[] mapLine(String line) {
         if (StringUtils.isEmpty(line)) {
             return new String[0];
         }
