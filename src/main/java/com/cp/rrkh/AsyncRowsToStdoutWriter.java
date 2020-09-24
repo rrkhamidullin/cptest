@@ -24,6 +24,7 @@ public class AsyncRowsToStdoutWriter {
      */
     @Async
     public CompletableFuture<Void> writeRowsFromReader(Reader reader) {
+        log.info("Processing: {}", reader.getFileName());
         try {
             reader.rows().map(gson::toJson).forEach(System.out::println);
         } catch (Exception e) {

@@ -44,7 +44,7 @@ public enum Readers {
         }
         try {
             String extension = getExtension(fileName);
-            BufferedReader br = CSV.createBufferedReader(fileName);
+            BufferedReader br = createBufferedReader(fileName);
             return byExtension(extension).readerCreator.apply(fileName, br);
         } catch (Exception e) {
             log.error("File reader creation failed for file name: {}. Error: {}", fileName, e);
@@ -58,13 +58,13 @@ public enum Readers {
                 .orElseThrow(() -> new FormatNotSupportedException(extension));
     }
 
-    private BufferedReader createBufferedReader(String fileName) throws IOException {
+    private static BufferedReader createBufferedReader(String fileName) throws IOException {
         String[] split = fileName.split("\\.");
         if (split.length < 2) {
             log.error("File reader creation failed. File name have wrong format.");
             return null;
         }
-        log.trace("Creating file reader for: {}", fileName);
+        log.info("Creating file reader for: {}", fileName);
         return Files.newBufferedReader(Paths.get(fileName));
     }
 
