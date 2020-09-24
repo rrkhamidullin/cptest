@@ -1,12 +1,14 @@
-package com.cardpay.rrkh.parse;
+package com.cp.rrkh.parse.readers;
 
 import org.springframework.util.StringUtils;
 
-public class CSVFileParser extends AbstractFileParser {
+import java.io.IOException;
+
+public class CSVFileReader extends AbstractFileReader {
 
     private static final String CSV_DELIMITER = ",";
 
-    public CSVFileParser(String fileName) throws Exception {
+    public CSVFileReader(String fileName) throws IOException {
         super(fileName);
     }
 

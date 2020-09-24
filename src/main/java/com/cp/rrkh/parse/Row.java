@@ -1,8 +1,13 @@
-package com.cardpay.rrkh.parse;
+package com.cp.rrkh.parse;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
+/**
+ * Строка-результат.
+ */
 @Data
 @Accessors(chain = true)
 public class Row {
@@ -15,7 +20,7 @@ public class Row {
     /**
      * Сумма ордера в центах
      */
-    private Long amount;
+    private BigDecimal amount;
 
     /**
      * Валюта суммы ордера
@@ -41,19 +46,4 @@ public class Row {
      * Результат парсинга записи исходного файла.
      */
     private String result;
-
-    /**
-     * ObjectMapper тут будет лишним.
-     */
-    public String toJsonObject() {
-        return "{" +
-                "\"id\":" + id +
-                ",\"amount\":" + amount +
-                ",\"currency\":\"" + currency + "\"" +
-                ",\"comment\":\"" + comment + "\"" +
-                ",\"filename\":" + filename + "\"" +
-                ",\"line\":" + line +
-                ",\"result\":" + result + "\"" +
-                '}';
-    }
 }

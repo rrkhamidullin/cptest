@@ -1,14 +1,16 @@
-package com.cardpay.rrkh.parse;
+package com.cp.rrkh.parse.readers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import org.springframework.util.StringUtils;
 
-public class JSONFileParser extends AbstractFileParser {
+import java.io.IOException;
+
+public class JSONFileReader extends AbstractFileReader {
 
     private final Gson gson = new Gson();
 
-    public JSONFileParser(String fileName) throws Exception {
+    public JSONFileReader(String fileName) throws IOException {
         super(fileName);
     }
 

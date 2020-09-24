@@ -1,4 +1,4 @@
-package com.cardpay.rrkh.parse;
+package com.cp.rrkh.parse;
 
 public class FormatNotSupportedException extends RuntimeException {
 
