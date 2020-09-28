@@ -3,7 +3,7 @@ package com.cp.rrkh.readers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  * Предоставляет читателей файлов по именам файлов.
  */
 @Slf4j
-@Service
+@Component
 public class ReaderProvider {
 
     private static final String READER_BUILDER_NAME_POSTFIX = "ReaderBuilder";
